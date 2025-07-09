@@ -23,6 +23,13 @@ export default function SignIn() {
     e.preventDefault();
     setIsLoading(true);
     setError("");
+    // DEMO LOGIN LOGIC
+    if (formData.email === "customer@example.com") {
+      localStorage.setItem("user", JSON.stringify({ role: "customer", email: formData.email }));
+      setIsLoading(false);
+      navigate("/");
+      return;
+    }
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
